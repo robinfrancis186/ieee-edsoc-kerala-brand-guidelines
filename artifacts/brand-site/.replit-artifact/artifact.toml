@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "IEEE EdSoc Kerala — Brand Guidelines"
+version = "1.0.0"
+id = "artifacts/brand-site"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22940
+
+[services.development]
+run = "pnpm --filter @workspace/brand-site run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/brand-site", "run", "build" ]
+publicDir = "artifacts/brand-site/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22940"
+BASE_PATH = "/"
